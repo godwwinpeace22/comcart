@@ -1,0 +1,48 @@
+extends layout
+block content
+  title #{title}
+  h3 Add a product
+  form(action='', method='POST', enctype='multipart/form-data')
+    .form-group
+      input.form-control(name='name', type='text', placeholder='name of product')
+    .form-group
+      input.form-control(name='description', type='text', placeholder='description of product')
+    .form-group
+      input.form-control(name='productImg', type='file', accept='.png, .jpg, .jpeg', multiple)
+    .form-group
+      input.form-control(name='formerPrice', type='number', placeholder='former price of product')
+    .form-group
+      input.form-control(name='currentPrice', type='number', placeholder='current price of product')
+    .form-group
+      input.form-control(name='manufacturer', type='text', placeholder='manufacturer of product')
+    .form-group
+      input.form-control(name='seller', type='text', placeholder='seller of product')
+    .form-group
+      input.form-control(name='sellerRating', type='number', placeholder='Seller Rating')
+    .form-group
+      input.form-control(name='noSold', type='number', placeholder='number of product sold')
+    .form-group
+      input.form-control(name='warrantee', type='text', placeholder='warrantee of product')
+    .form-group
+      input.form-control(name='instock', type='text', placeholder='is product in stock')
+    .form-group
+      input.form-control(name='noInstock', type='number', placeholder='number of product available')
+    .form-group
+      select.form-control(name='category')
+        option phones and tablets
+        option computer and accessories
+        option electronics
+        option fashion
+        option home and kitchen
+        option baby, kids and toys
+        option sports and fitness
+        option automobiles
+        option groceries
+    .form-group
+      input.form-control(name='subcategory', type='text', placeholder='enter subcategory')
+    .form-group
+      input.form-control(name='tags', type='text', placeholder='enter comma separated tags')
+    .form-group
+      input.form-control(name='type', type='text', placeholder='enter type of product eg. shoe, dress, hat, phone, fridge')
+    .form-group
+      button.btn.btn-default(value='submit') submit

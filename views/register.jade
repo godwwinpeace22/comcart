@@ -1,0 +1,32 @@
+extends layout
+title=title
+block content
+  h1 Please #{title}
+  if msg
+    ul
+      li!= msg
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+  form(method='POST', target='')
+    .form-group
+      label Name
+      input.form-control(name='name', type='text', placeholder='Enter name')
+    .form-group
+      label Username
+      input.form-control(name='username', type='text', placeholder='Enter username')
+    .form-group
+      label Email
+      input.form-control(name='email', type='email', placeholder='Enter email')
+    .form-group
+      label Billing Address
+      input.form-control(name='billingAddr', type='text', placeholder='Your billing address')
+    .form-group
+      label Password
+      input.form-control(name='password', type='password', placeholder='Enter password')
+    .form-group
+      label Confirm Password
+      input.form-control(name='password2', type='password', placeholder='Confirm password')
+    .form-group
+      input.btn.btn-primary(name='register', type='submit')

@@ -1,0 +1,30 @@
+extends layout
+block content
+	title #{title}
+	.row
+		.col-sm-3(style='height:300px;padding-right:0px;padding-left:0px;border:1px solid #eee;')
+			ul.sidebar.sidebar-header
+				li.list-header
+					if(category)
+						a #{category.title}
+			ul.sidebar
+				if(category)
+					li #{category.cat1}
+					li #{category.cat2}
+					li #{category.cat3}
+					li #{category.cat4}
+					li #{category.cat5}
+					li #{category.cat6}
+					li #{category.cat7}
+					li #{category.cat8}
+					li #{category.cat9}
+					li #{category.cat10}
+					li #{category.cat11}
+					li #{category.cat12}
+		.col-sm-9
+			for product in products
+				li(style='list-style:none;')
+					.panel
+						p: a(href='/products/description/' + product._id) #{product.name}
+						p #{product.description}
+						p #{product.seller}

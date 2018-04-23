@@ -1,0 +1,31 @@
+extends layout
+title #{title}
+block content
+  div.row
+    hr
+    for result in results
+      .col-md-12
+        img(src='../../#{result.product.productImgUrl1}', style='width:200px;')
+      h4
+        a(href='http://localhost:3000/products/description/#{result.product._id}') #{result.product.name}
+      p(style='color:blue;') price: $ #{result.product.currentPrice}
+      if(result.product.noInstock == 0)
+        p.alert.alert-danger Out of stock
+      p sellerRating: #{result.product.sellerRating}
+      if(result.product.noInstock != 0)
+        a.remove(href='#', productId='#{result._id}')
+        button.removeItm.btn.btn-default.pull-right(onclick='removeItem()') Remove Item
+      hr
+    if(cartCount > 0)
+      h2 Subtotal: $ #{subtotal}
+    if(cartCount == 0)
+      h2(style='text-align:center;color:skyblue;') Your cart is empty!
+    if(cartCount != 0)
+      div.form-group
+        button.btn.btn-primary
+          a(href='/users/pay', style='color:#fff;') Proceed to checkout
+    if(cartCount == 0)
+      div.form-group
+        button.btn.btn-primary
+          a(href='../../', style='color:#fff;') Continue shopping
+  script(src='../../javascripts/script.js')

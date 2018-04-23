@@ -1,0 +1,202 @@
+extends layout
+title #{title}
+link(rel='stylesheet', href='/stylesheets/style.css')
+link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+block content
+  div.cover(style='display:none;position:fixed;top:10%;width:50%;height:500px;border:1px solid grey;z-index:1000000;left:20%')
+    img.coverimg(src='', style='width:100%;')
+  div.row
+    div.col-md-8(style='padding:0px;')
+      div.col-md-12(style='')
+        hr
+        if(product.productImgUrl1 || product.productImgUrl2 || product.productImgUrl3 || product.productImgUrl4)
+          div#myCarousel.carousel.slide(data-ride="carousel" style='min-height:400px;')
+            ol.carousel-indicators
+              li.active(data-target="#myCarousel" data-slide-to="0")
+              if(product.productImgUrl2 != '')
+                li(data-target="#myCarousel" data-slide-to="1")
+              if(product.productImgUrl3 != '')
+                li(data-target="#myCarousel" data-slide-to="2")
+              if(product.productImgUrl4 != '')
+                li(data-target="#myCarousel" data-slide-to="3")
+            div.carousel-inner(role="listbox")
+              div.item.active
+                img(src="../../#{product.productImgUrl1}" alt="Chania" width="460" height="345")
+              if(product.productImgUrl2)
+                div.item
+                  img(src="../../#{product.productImgUrl2}" alt="Chania" width="460" height="345")
+              if(product.productImgUrl3)
+                div.item
+                  img(src="../../#{product.productImgUrl3}" alt="Flower" width="460" height="345")
+              if(product.productImgUrl4)
+                div.item
+                  img(src="../../#{product.productImgUrl4}" alt="Flower" width="460" height="345")
+            a.left.carousel-control(href="#myCarousel" role="button" data-slide="prev")
+              span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+              span.sr-only Previous
+            a.right.carousel-control(href="#myCarousel" role="button" data-slide="next")
+              span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+              span.sr-only Next
+      div.col-md-12
+        if(product.noInstock == 0)
+          p.alert.alert-danger Out of stock
+        if(message)
+          p.alert.alert-danger.message(style='display:none;') #{message}
+        if(product.noInstock != 0)
+          a.link(href='#' productId='#{product._id}', isLoggedIn='#{isLoggedIn}')
+          button.addToCart.btn.btn-primary(type='submit', style='margin-top:10px;', onclick='addToCart()') Add To Cart
+    div.col-md-4(style='background-color:;border-left:1px solid grey;')
+      div.col-md-12(style='width:px;background-color:')
+        if(product.productImgUrl2)
+          img.imghover#imghover1(src='../../#{product.productImgUrl2}', style='width:100px')
+      div.col-md-12(style='width:px;background-color:s;')
+        if(product.productImgUrl3)
+         img.imghover#imghover2(src='../../#{product.productImgUrl3}', style='width:100px')
+      div.col-md-12(style='width:px;background-color:;')
+        if(product.productImgUrl4)
+          img.imghover#imghover3(src='../../#{product.productImgUrl4}', style='width:100px')
+    
+  hr
+  ul.nav.nav-tabs
+    li.active
+      a(data-toggle="tab" href="#home") Description
+    li
+      a(data-toggle="tab" href="#menu1") Seller Info
+    li
+      a(data-toggle="tab" href="#menu2") Customer Reviews
+    li
+      a(data-toggle="tab" href="#menu3") Similar Products
+
+  div.tab-content(style='min-height:250px;')
+    div#home.tab-pane.fade.in.active
+      h3 Product Description
+      p #{product.description}
+      p Warrantee: #{product.warrantee}
+      p Number of this product sold: #{product.noSold}
+    div#menu1.tab-pane.fade
+      h3 Seller Information
+      p #{product.seller}
+      p Seller Rating: #{product.sellerRating}
+    div#menu2.tab-pane.fade
+      if(loginMsg)
+        p.alert.alert-danger=loginMsg
+      span.heading Average Rating
+      span(avReview='#{avReview}').fa.fa-star.class1
+      span.fa.fa-star.class2
+      span.fa.fa-star.class3
+      span.fa.fa-star.class4
+      span.fa.fa-star.class5
+      p #{avReview} average based on #{totalReviews} reviews.
+      hr(style='border:3px solid #f1f1f1')
+      .row.col-xs-8.review
+        .col-xs-2(style='height:18px;')
+          p 5 Star
+        .col-xs-8
+          div.bar-5(style='width:#{ratings.barFiveWidth}%;')
+        .col-xs-2(style="height:18px;")
+          p #{reviewCount.reviewCountsFive}
+      .row.col-xs-8.review
+        .col-xs-2(style='height:18px;')
+          p 4 Star
+        .col-xs-8
+          div.bar-4(style='width:#{ratings.barFourWidth}%;')
+        .col-xs-2(style="height:18px;")
+          p #{reviewCount.reviewCountsFour}
+      .row.col-xs-8.review
+        .col-xs-2(style='height:18px;')
+          p 3 Star
+        .col-xs-8
+          div.bar-3(style='width:#{ratings.barThreeWidth}%;')
+        .col-xs-2(style="height:18px;")
+          p #{reviewCount.reviewCountsThree}
+    
+      .row.col-xs-8.review
+        .col-xs-2(style='height:18px;')
+          p 2 Star
+        .col-xs-8
+          div.bar-2(style='width:#{ratings.barTwoWidth}%;')
+        .col-xs-2(style=";height:18px;")
+          p #{reviewCount.reviewCountsTwo}
+      .row.col-xs-8.review
+        .col-xs-2(style='height:18px;')
+          p 1 Star
+        .col-xs-8
+          div.bar-1(style='width:#{ratings.barOneWidth}%;')
+        .col-xs-2(style=";height:18px;")
+          p #{reviewCount.reviewCountsOne}
+      hr.col-xs-12(style='border:1px solid #f1f1f1')
+      .col-xs-12(style='margin-top:15px;')
+        h3 Customer Reviews
+        if(reviews.length != 0)
+          for review in reviews
+            if(review.star == 0)
+              span.fa.fa-star
+              span.fa.fa-star
+              span.fa.fa-star
+              span.fa.fa-star
+              span.fa.fa-star
+            if(review.star == 1)
+              span.fa.fa-star.checked
+              span.fa.fa-star
+              span.fa.fa-star
+              span.fa.fa-star
+              span.fa.fa-star
+            if(review.star == 2)
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star
+              span.fa.fa-star
+              span.fa.fa-star
+            if(review.star == 3)
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star
+              span.fa.fa-star
+            if(review.star == 4)
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star
+            if(review.star == 5)
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+            p
+              span
+                b #{review.title} 
+              i by 
+              span=review.commenter
+            p #{review.commentBody}
+            i #{review.date}
+            hr
+            
+        if(reviews.length == 0)
+          p No reviews yet for this product. Be the first to add a review.
+      .col-xs-12.yourRating
+        h3 Write a review
+        p How do you rate this product? 
+          span.fa.fa-star.one(onclick='one()')
+          span.fa.fa-star.two(onclick='two()')
+          span.fa.fa-star.three(onclick='three()')
+          span.fa.fa-star.four(onclick='four()')
+          span.fa.fa-star.five(onclick='five()')
+      form(action="", method="POST")
+        .form-group
+          input.form-control(name='title', type='text', placeholder='Enter title of your comment', required)
+        .form-group
+          input.form-control(name='name', type='text', placeholder='Your name')
+        .form-group
+          textarea.form-control(name='commentBody', placeholder='Write your comment', required)
+        .form-group
+          input.btn.btn-primary(type='submit', value='post comment', name='submitComment')
+          input.storeAttr(style='opacity:0;' type='number', name='star', value='0')
+    
+    div#menu3.tab-pane.fade
+      h3 Similar Products
+      p Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+  script(src='../../javascripts/jquery-3.2.0.js')
+  script(src='../../javascripts/script.js')

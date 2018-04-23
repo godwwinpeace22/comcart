@@ -1,0 +1,85 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  body
+    nav.navbar(style='background-color:#eee')
+      div.container-fluid
+        div.navbar-header
+          a.navbar-brand(href="#")
+            bold Comcart
+        form.navbar-form(action='/' method='GET')
+          div.input-group.col-md-6
+            input.form-control(type="text" name='search' placeholder="What are you looking for today ?")
+            div.input-group-btn
+              button.btn.btn-default(type="submit")
+                i.glyphicon.glyphicon-search
+          ul.nav.navbar-nav.navbar-right
+            li(class=(title == 'Cart' ? 'active' : ''))
+              a(href='/users/checkout')
+                if(isLoggedIn)
+                  span.badge.count(style="color:white;background-color:green;") #{cartCount}
+                  i.glyphicon.glyphicon-shopping-cart
+                if(!isLoggedIn)
+                  i.glyphicon.glyphicon-shopping-cart   
+            if(!isLoggedIn)
+              li(class=(title == 'User' ? 'active' : ''))
+                a(href='/users/register')
+                  i.glyphicon.glyphicon-user
+    nav.navbar.navbar-default.navbar-static-top
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Comcart
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li(class=(title == 'Phones-Tablets' ? 'active' : ''))
+              a(href='/products/phones and tablets') Phones & Tablets
+            li.dropdown(class=(title == 'Computer-accessories' ? 'active' : ''))
+              a.dropdown-toggle(href='http://localhost:3000/products/computer and accessories') Computer & Accessories
+            li.dropdown(class=(title == 'Electronics' ? 'active' : ''))
+              a.dropdown-toggle(href='http://localhost:3000/products/electronics') Electronics
+            li.dropdown(class=(title == 'Fashion' ? 'active' : ''))
+              a.dropdown-toggle(href='http://localhost:3000/products/fashion') Fashion
+            li.dropdown(class=(title == 'Home-Kitchen' ? 'active' : ''))
+              a.dropdown-toggle(href='http://localhost:3000/products/home and kitchen') Home & Kitchen
+            li.dropdown(class=(title == 'Baby-Kids-Toys' ? 'active' : ''))
+              a.dropdown-toggle(href='http://localhost:3000/products/baby, kids and toys') Baby, Kids & Toys
+            li.dropdown(class=(title == 'Other-Categories' ? 'active' : ''))
+              a.dropdown-toggle(href='#', data-toggle="dropdown" ) Other Categories
+                span.caret
+                ul.dropdown-menu
+                  li
+                    a(href="/products/health-and-fitness") Health and fitness
+                  li
+                    a(href="/products/science-and-technology") Science and Technology
+                  li
+                    a(href="/products/nature") Nature
+                  li
+                    a(href="/products/politics") Politics
+                  li
+                    a(href="/products/religion-and-spirituality") Religion and Spirituality
+                  li
+                    a(href="/products/programming") Programming
+                  
+          ul.nav.navbar-nav.navbar-right
+            if(!isLoggedIn)
+              li(class=(title == 'Register' ? 'active' : ''))
+                a(href='/users/register') Register
+            if(!isLoggedIn)
+              li(class=(title == 'Login' ? 'active' : ''))
+                a(href='/users/login') Log In
+            if(isLoggedIn)
+              li
+                a(href='/users/logout') Logout
+    block content
+    script(src='/javascripts/jquery-3.2.0.js')
+    script(src='/javascripts/bootstrap.js')
+    

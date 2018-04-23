@@ -1,0 +1,102 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+}
+.carousel-indicators li{
+	background-color: #356;
+}
+.carousel-indicators .active {
+	background-color: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+.fa {
+  font-size: 40px;
+}
+.fa:hover{
+  cursor:pointer;
+}
+
+.checked {
+  color: orange;
+}
+/* Individual bars */
+.bar-5 {height: 18px; background-color: #4CAF50;}
+.bar-4 {height: 18px; background-color: #2196F3;}
+.bar-3 {height: 18px; background-color: #00bcd4;}
+.bar-2 {height: 18px; background-color: #ff9800;}
+.bar-1 {height: 18px; background-color: #f44336;}
+
+.review{
+  padding:5px;
+  margin-bottom:5px;
+}
+.home-rows{
+  margin-bottom:10px;
+  position: relative;
+}
+.sidebar li{
+  list-style:none;
+  padding:4px 0px;
+  margin-bottom:5px;
+}
+.sidebar li a{
+  color:#000;
+}
+.sidebar-header-women {
+  background-color:rgb(182, 59, 141);
+}
+.sidebar-header-men {
+  background-color:#333;
+}
+.sidebar-header-phones{
+  background-color:red;
+}
+.sidebar-header-computers{
+  background-color:skyblue;
+}
+.sidebar-header-electronics{
+  background-color:blue;
+}
+.sidebar-header-home{
+  background-color:rgb(17, 112, 116);
+}
+.sidebar-header-beauty{
+  background-color:rgb(15, 134, 98);
+}
+.sidebar-header-power{
+  background-color:rgb(125, 7, 129);
+}
+.sidebar-header-others{
+  background-color:rgb(38, 196, 32);
+}
+.sidebar-header li a{
+  color:#fff;
+}
+.sidebar-header li, .sidebar-footer li{
+  padding:10px 0px;
+}
+.hvr{position:relative}
+.sidebar-footer{
+  background-color:#eee;
+  position:relative;
+  bottom:0px;
+}
+
