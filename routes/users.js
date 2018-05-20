@@ -264,7 +264,8 @@ router.get('/pay', requireLogin, function(req, res, next){
   });
 
 router.post('/pay', requireLogin, function(req,res,next){
-  let amount = 500;
+  let amount = req.body.amount;
+  console.log(req.body);
   stripe.customers.create({
     email: req.body.stripeEmail,
    source: req.body.stripeToken
