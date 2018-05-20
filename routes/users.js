@@ -206,6 +206,7 @@ router.get('/checkout', requireLogin, function(req, res, next){
           results: response,
           subtotal:subtotal,
           cartCount: response.length,
+          publishableKey:process.env.publishableKey,
           isLoggedIn:req.session.user
         });
       }
