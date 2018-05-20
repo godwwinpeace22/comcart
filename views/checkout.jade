@@ -21,6 +21,7 @@ block content
     if(cartCount == 0)
       h2(style='text-align:center;color:skyblue;') Your cart is empty!
     if(cartCount != 0)
+    <h1>#{publishableKey}</h1>
       div.form-group
         form(action="/users/pay", method="post")
           article
