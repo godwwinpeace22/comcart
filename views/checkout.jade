@@ -7,7 +7,7 @@ block content
       .col-md-12
         img(src='../../#{result.product.productImgUrl1}', style='width:200px;')
       h4
-        a(href='http://localhost:3000/products/description/#{result.product._id}') #{result.product.name}
+        a(href='/products/description/#{result.product._id}') #{result.product.name}
       p(style='color:blue;') price: $ #{result.product.currentPrice}
       if(result.product.noInstock == 0)
         p.alert.alert-danger Out of stock
@@ -21,7 +21,6 @@ block content
     if(cartCount == 0)
       h2(style='text-align:center;color:skyblue;') Your cart is empty!
     if(cartCount != 0)
-      h1 #{publishableKey}
       div.form-group
         form(action="/users/pay", method="post")
           article
@@ -29,7 +28,7 @@ block content
           script(
             src="//checkout.stripe.com/v2/checkout.js",
             class="stripe-button",
-            data-key=publishableKey,
+            data-key="pk_test_JZF4rl8611QVh4wyw6kvZyQ4",
             data-locale="auto",
             data-description="Sample Charge",
             data-amount=subtotal * 100)

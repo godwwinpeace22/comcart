@@ -4,7 +4,7 @@ var router = express.Router();
 var session = require('client-sessions');
 var User = require('../models/user');
 var Product = require('../models/product');
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 var Cart = require('../models/cart');
 const stripe = require("stripe")(process.env.secretKey);
 /* GET users listing. */
@@ -207,7 +207,7 @@ router.get('/checkout', requireLogin, function(req, res, next){
           results: response,
           subtotal:subtotal,
           cartCount: response.length,
-          publishableKey:process.env.publishableKey,
+          publishableKey: process.env.publishableKey,
           isLoggedIn:req.session.user
         });
       }
