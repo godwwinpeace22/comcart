@@ -4,6 +4,7 @@ var router = express.Router();
 var session = require('client-sessions');
 var User = require('../models/user');
 var Product = require('../models/product');
+require('dotenv').config();
 var Cart = require('../models/cart');
 const stripe = require("stripe")(process.env.secretKey);
 /* GET users listing. */
