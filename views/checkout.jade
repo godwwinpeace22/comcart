@@ -22,8 +22,16 @@ block content
       h2(style='text-align:center;color:skyblue;') Your cart is empty!
     if(cartCount != 0)
       div.form-group
-        button.btn.btn-primary
-          a(href='/users/pay', style='color:#fff;') Proceed to checkout
+        form(action="/users/pay", method="post")
+          article
+            label Amount: $5.00
+          script(
+            src="//checkout.stripe.com/v2/checkout.js",
+            class="stripe-button",
+            data-key=keyPublishable,
+            data-locale="auto",
+            data-description="Sample Charge",
+            data-amount="500")
     if(cartCount == 0)
       div.form-group
         button.btn.btn-primary
