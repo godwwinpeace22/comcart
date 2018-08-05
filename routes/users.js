@@ -263,16 +263,15 @@ router.get('/pay', requireLogin, function(req, res, next){
     
   });
 
-router.post('/pay', requireLogin, function(req,res,next){
-  let amount = req.body.amount;
-  console.log(req.body);
+router.post('/pay/:amount', requireLogin, function(req,res,next){
+
   stripe.customers.create({
     email: req.body.stripeEmail,
    source: req.body.stripeToken
  })
  .then(customer =>
    stripe.charges.create({
-     amount,
+     amount:req.params.amount,
      description: "Sample Charge",
         currency: "usd",
         customer: customer.id

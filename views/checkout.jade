@@ -22,7 +22,7 @@ block content
       h2(style='text-align:center;color:skyblue;') Your cart is empty!
     if(cartCount != 0)
       div.form-group
-        form(action="/users/pay", method="post")
+        form(action="/users/pay/#{subtotal}", method="post")
           article
             label Amount: $ #{subtotal}
           script(
@@ -30,7 +30,8 @@ block content
             class="stripe-button",
             data-key="pk_test_JZF4rl8611QVh4wyw6kvZyQ4",
             data-locale="auto",
-            data-description="Pay With Card",
+            data-name='Comcart',
+            data-description="Pay With Card", 
             data-amount=subtotal * 100)
     if(cartCount == 0)
       div.form-group
